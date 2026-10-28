@@ -22,22 +22,22 @@ const services = [
     description: "Professional book layout and page composition",
   },
   {
-    label: "Book Layout & Production",
-    href: "/services/book-layout",
-    icon: IconLayoutGridAdd,
-    description: "Comprehensive design and production support",
-  },
-  {
     label: "Digital Artwork",
     href: "/services/digital-artwork",
     icon: IconPalette,
     description: "Custom illustrations and visual design",
   },
   {
-    label: "Publishing Production",
+    label: "Publishing Production Support",
     href: "/services/publishing-production",
     icon: IconBook2,
     description: "Flexible capacity for ongoing projects",
+  },
+  {
+    label: "Digital Marketing Creative Services",
+    href: "/services/book-layout",
+    icon: IconLayoutGridAdd,
+    description: "Campaign creatives and promotional content",
   },
 ];
 

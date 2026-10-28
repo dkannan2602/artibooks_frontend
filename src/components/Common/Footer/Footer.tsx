@@ -24,9 +24,9 @@ const quickLinks = [
 
 const services = [
   { label: "Typesetting & Pagination", href: "/services/typesetting" },
-  { label: "Book Layout & Production", href: "/services/book-layout" },
   { label: "Digital Artwork", href: "/services/digital-artwork" },
-  { label: "Publishing Production", href: "/services/publishing-production" },
+  { label: "Publishing Production Support", href: "/services/publishing-production" },
+  { label: "Digital Marketing Creative Services", href: "/services/book-layout" },
 ];
 
 const socialLinks = [
