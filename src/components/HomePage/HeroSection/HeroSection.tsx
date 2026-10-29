@@ -1,7 +1,13 @@
+"use client"
+
+import { useState } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import EnquiryForm from "@/components/Common/EnquiryForm/EnquiryForm";
 import { IconArrowRight } from "@tabler/icons-react";
 
 export default function HeroSection() {
+  const [enquiryFormOpen, setEnquiryFormOpen] = useState(false);
   return (
     <section 
       className="relative overflow-hidden bg-cover bg-center bg-scroll"
@@ -28,11 +34,14 @@ export default function HeroSection() {
               and businesses worldwide.
             </p>
             <div className="flex flex-wrap gap-4 pt-4">
-              <Button className="rounded-full bg-teal-950 hover:bg-teal-900 text-white px-7 py-3 text-sm font-medium gap-2 h-12">
-                Explore Our Services
-                <IconArrowRight className="h-4 w-4" />
-              </Button>
+              <Link href="/services">
+                <Button className="rounded-full bg-teal-950 hover:bg-teal-900 text-white px-7 py-3 text-sm font-medium gap-2 h-12">
+                  Explore Our Services
+                  <IconArrowRight className="h-4 w-4" />
+                </Button>
+              </Link>
               <Button
+                onClick={() => setEnquiryFormOpen(true)}
                 className="rounded-full bg-white hover:bg-gray-50 text-teal-950 border border-gray-300 px-7 py-3 text-sm font-medium h-12"
               >
                 Get in Touch
@@ -41,6 +50,13 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
+
+      {/* Enquiry Form Modal */}
+      <EnquiryForm 
+        isOpen={enquiryFormOpen} 
+        onClose={() => setEnquiryFormOpen(false)}
+        backdropColor="teal"
+      />
     </section>
   );
 }

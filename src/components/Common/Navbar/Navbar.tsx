@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import EnquiryForm from "@/components/Common/EnquiryForm/EnquiryForm";
 import {
   IconMenu2,
   IconX,
@@ -35,7 +36,7 @@ const services = [
   },
   {
     label: "Digital Marketing Creative Services",
-    href: "/services/book-layout",
+    href: "/services/digital-marketing",
     icon: IconLayoutGridAdd,
     description: "Campaign creatives and promotional content",
   },
@@ -48,6 +49,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [enquiryFormOpen, setEnquiryFormOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown on outside click
@@ -83,7 +85,7 @@ export default function Navbar() {
       </div>
 
       {/* Main Navbar */}
-      <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-100 shadow-sm">
+      <header className="w-full bg-white border-b border-gray-100 shadow-sm">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-20 items-center justify-between">
 
@@ -160,7 +162,10 @@ export default function Navbar() {
 
             {/* CTA Button */}
             <div className="hidden lg:block">
-              <Button className="rounded-full bg-teal-950 hover:bg-teal-900 text-white px-6 py-2.5 text-sm font-medium gap-2 shadow-lg shadow-teal-900/30">
+              <Button 
+                onClick={() => setEnquiryFormOpen(true)}
+                className="rounded-full bg-teal-950 hover:bg-teal-900 text-white px-6 py-2.5 text-sm font-medium gap-2 shadow-lg shadow-teal-900/30"
+              >
                 Let&apos;s Talk
                 <IconArrowRight className="h-4 w-4" />
               </Button>
@@ -242,7 +247,13 @@ export default function Navbar() {
               </Link>
 
               <div className="pt-2 px-3">
-                <Button className="w-full rounded-full bg-teal-950 hover:bg-teal-900 text-white text-sm font-medium gap-2">
+                <Button 
+                  onClick={() => {
+                    setEnquiryFormOpen(true);
+                    setMobileMenuOpen(false);
+                  }}
+                  className="w-full rounded-full bg-teal-950 hover:bg-teal-900 text-white text-sm font-medium gap-2"
+                >
                   Let&apos;s Talk
                   <IconArrowRight className="h-4 w-4" />
                 </Button>
@@ -251,6 +262,12 @@ export default function Navbar() {
           )}
         </div>
       </header>
+
+      {/* Enquiry Form Modal */}
+      <EnquiryForm 
+        isOpen={enquiryFormOpen} 
+        onClose={() => setEnquiryFormOpen(false)} 
+      />
     </>
   );
 }

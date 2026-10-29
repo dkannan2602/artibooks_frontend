@@ -31,7 +31,7 @@ const services = [
     description:
       "Campaign creatives, social media design and promotional content.",
     image: "Digital Marketing Creative Services.png",
-    href: "/services/book-layout",
+    href: "/services/digital-marketing",
   },
 ];
 

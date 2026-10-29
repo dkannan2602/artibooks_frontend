@@ -1,10 +1,11 @@
 "use client"
 
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import CtaFooter from "./CtaFooter";
 import {
-  IconArrowRight,
   IconMapPin,
   IconMail,
   IconPhone,
@@ -26,7 +27,7 @@ const services = [
   { label: "Typesetting & Pagination", href: "/services/typesetting" },
   { label: "Digital Artwork", href: "/services/digital-artwork" },
   { label: "Publishing Production Support", href: "/services/publishing-production" },
-  { label: "Digital Marketing Creative Services", href: "/services/book-layout" },
+  { label: "Digital Marketing Creative Services", href: "/services/digital-marketing" },
 ];
 
 const socialLinks = [
@@ -37,28 +38,16 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+  
+  // Hide CTA banner on /services overview and individual service detail pages
+  const isServicePage = pathname === "/services" || pathname.match(/^\/services\/(typesetting|digital-artwork|publishing-production|digital-marketing)$/);
+  const showCtaBanner = !isServicePage;
+
   return (
     <footer className="bg-teal-950 text-white">
-      {/* CTA Banner */}
-      <div className="border-b border-white/10">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="text-center md:text-left">
-              <h3 className="text-2xl sm:text-3xl font-bold text-white">
-                Let&apos;s work together on your next publishing project.
-              </h3>
-              <p className="text-sm text-gray-400 mt-2 max-w-lg">
-                Share your requirements and our team will get back to you within
-                24 hours.
-              </p>
-            </div>
-            <Button className="rounded-full bg-teal-50 hover:bg-teal-100 text-teal-950 px-8 py-3 text-sm font-semibold gap-2 h-12 shrink-0 shadow-lg shadow-teal-900/20">
-              Contact Us
-              <IconArrowRight className="h-4 w-4" />
-            </Button>
-          </div>
-        </div>
-      </div>
+      {/* CTA Banner - Hidden on individual service pages */}
+      {showCtaBanner && <CtaFooter />}
 
       {/* Main Footer Content */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
@@ -189,12 +178,6 @@ export default function Footer() {
                 className="text-xs text-gray-500 hover:text-gray-300 transition-colors"
               >
                 Terms of Service
-              </Link>
-              <Link
-                href="/sitemap"
-                className="text-xs text-gray-500 hover:text-gray-300 transition-colors"
-              >
-                Sitemap
               </Link>
             </div>
           </div>
